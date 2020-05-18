@@ -77,6 +77,14 @@
         titleDOM.textContent = title;
         div.appendChild(titleDOM);
 
+        let abstractDOM = document.createElement("p");
+        abstractDOM.textContent = abstract;
+        div.appendChild(abstractDOM);
+
+        let tagDOM = document.createElement("p");
+        tagDOM.textContent = tags;
+        div.appendChild(tagDOM);
+
         container.appendChild(link);
       });
     }
