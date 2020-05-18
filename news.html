@@ -36,8 +36,6 @@
     <!--  <svg width="1000" height="600"></svg> -->
     <div class="container"></div>
   </body>
-  <script src="https://unpkg.com/d3@2.7.0/d3.min.js"></script>
-  <script src="https://unpkg.com/topojson@3.0.2/dist/topojson.min.js"></script>
   <script>
     const KEY = "31JGdhc2xQzm1UQZje5xkkukA0fTG9nr";
     const container = document.getElementsByClassName("container")[0];
@@ -67,7 +65,6 @@
         let tags = article.des_facet;
         let byline = article.byline;
         let date = article.published_date;
-        console.log(article);
 
         let div = document.createElement("div");
         let content = document.createElement("div");
@@ -82,9 +79,34 @@
         div.appendChild(img);
 
         div.appendChild(content);
+
         let titleDOM = document.createElement("h3");
         titleDOM.textContent = title;
         content.appendChild(titleDOM);
+
+        let articleInfo = document.createElement("span");
+        content.appendChild(articleInfo);
+
+        articleInfo.classList = ["article-info"];
+        let bylineDOM = document.createElement("p");
+        bylineDOM.textContent = byline;
+
+        articleInfo.appendChild(bylineDOM);
+
+        let pubDate = document.createElement("p");
+        let timedif = Math.floor(
+          (Date.now() - new Date(date)) / (1000 * 60 * 60 * 24)
+        );
+        let postDate = `${timedif} days ago`;
+        if (timedif === 1) {
+          postDate = `${timedif} day ago`;
+        } else if (timedif === 0) {
+          postDate = `${Math.floor(
+            (Date.now() - new Date(date)) / (1000 * 60 * 60)
+          )} hours ago`;
+        }
+        pubDate.innerHTML = postDate;
+        articleInfo.appendChild(pubDate);
 
         let abstractDOM = document.createElement("p");
         abstractDOM.textContent = abstract;
