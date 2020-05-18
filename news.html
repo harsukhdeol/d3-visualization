@@ -27,6 +27,9 @@
       color: black;
       cursor: pointer;
     }
+    .content {
+      padding: 0.5rem 1rem;
+    }
   </style>
   <body>
     <h1>Trending articles of today</h1>
@@ -62,9 +65,14 @@
         let url = article.url;
         let abstract = article.abstract;
         let tags = article.des_facet;
+        let byline = article.byline;
+        let date = article.published_date;
         console.log(article);
 
         let div = document.createElement("div");
+        let content = document.createElement("div");
+        content.classList = ["content"];
+
         let link = document.createElement("a");
         link.href = url;
         link.appendChild(div);
@@ -73,17 +81,18 @@
         img.src = imgSrc.url;
         div.appendChild(img);
 
+        div.appendChild(content);
         let titleDOM = document.createElement("h3");
         titleDOM.textContent = title;
-        div.appendChild(titleDOM);
+        content.appendChild(titleDOM);
 
         let abstractDOM = document.createElement("p");
         abstractDOM.textContent = abstract;
-        div.appendChild(abstractDOM);
+        content.appendChild(abstractDOM);
 
         let tagDOM = document.createElement("p");
         tagDOM.textContent = tags;
-        div.appendChild(tagDOM);
+        content.appendChild(tagDOM);
 
         container.appendChild(link);
       });
